@@ -1,2 +1,2 @@
-# englishDictionary
+# english-dictionary
 English Dictionary
