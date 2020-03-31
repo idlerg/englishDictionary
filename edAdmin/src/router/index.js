@@ -1,22 +1,64 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// pages
-import Index from '@/pages/Index'
-// AdminIndex
-import AdminIndex from '@/pages/admin/AdminIndex'
-
 Vue.use(Router)
 
-export default new Router({
-  routes: [
+// import Login from '@/pages/Login'
+// import AdminIndex from '@/pages/admin/AdminIndex'
+const Login = r => require.ensure([], () => r(require('@/pages/Login')), 'Login');
+const AdminIndex = r => require.ensure([], () => r(require('@/pages/admin/AdminIndex')), 'AdminIndex');
+
+const routes = [
     {
-      path: '/',
-      name: 'index',
-      component: Index
+        path: '/',
+        component: Login
     }, {
-      path: '/adminIndex',
-      name: 'adminIndex',
-      component: AdminIndex
+        path: '/admin',
+        component: AdminIndex,
+        children:[{
+            path: '',
+			component: home,
+			meta: [],
+        },{
+            path: '',
+			component: home,
+			meta: [],
+        },{
+            path: '',
+			component: home,
+			meta: [],
+        },{
+            path: '',
+			component: home,
+			meta: [],
+        },{
+            path: '',
+			component: home,
+			meta: [],
+        },{
+            path: '',
+			component: home,
+			meta: [],
+        },{
+            path: '',
+			component: home,
+			meta: [],
+        },]
     }
-  ]
+]
+export default new Router({
+	routes
+	// strict: process.env.NODE_ENV !== 'production',
 })
+// export default new Router({
+//     routes: [
+//         {
+//             path: '/login',
+//             name: 'login',
+//             component: Login
+//         }, {
+//             path: '/admin',
+//             name: 'adminIndex',
+//             component: adminIndex
+//         }
+//     ]
+// })

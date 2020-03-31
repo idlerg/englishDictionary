@@ -1,134 +1,56 @@
 <template>
-	<div class="adminIndex">
-		<el-container>
-			<!-- 头部 -->
-			<el-header>
-				<!-- 侧边栏控制 -->
-				<div class="asideOper">
-					<el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-						<el-radio-button :label="false">展开</el-radio-button>
-						<el-radio-button :label="true">收起</el-radio-button>
-					</el-radio-group>
-				</div>
-				<div class="">title</div>
-			</el-header>
-			<el-container>
-				<!-- 侧边栏 -->
-				<el-aside>
-					<el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-						<el-submenu index="1">
-							<template slot="title">
-								<i class="el-icon-location"></i>
-								<span slot="title">导航一</span>
-							</template>
-							<el-menu-item-group>
-								<span slot="title">分组一</span>
-								<el-menu-item index="1-1">选项1</el-menu-item>
-								<el-menu-item index="1-2">选项2</el-menu-item>
-							</el-menu-item-group>
-							<el-menu-item-group title="分组2">
-								<el-menu-item index="1-3">选项3</el-menu-item>
-							</el-menu-item-group>
-							<el-submenu index="1-4">
-								<span slot="title">选项4</span>
-								<el-menu-item index="1-4-1">选项1</el-menu-item>
-							</el-submenu>
-						</el-submenu>
-						<el-menu-item index="2">
-							<i class="el-icon-menu"></i>
-							<span slot="title">导航二</span>
-						</el-menu-item>
-						<el-menu-item index="3" disabled>
-							<i class="el-icon-document"></i>
-							<span slot="title">导航三</span>
-						</el-menu-item>
-						<el-menu-item index="4">
-							<i class="el-icon-setting"></i>
-							<span slot="title">导航四</span>
-						</el-menu-item>
-					</el-menu>
-				</el-aside>
-				<!-- 页面主体 -->
-				<el-container>
-					<!-- main -->
-					<el-main>Main</el-main>
-					<!-- footer -->
-					<el-footer>Footer</el-footer>
-				</el-container>
-			</el-container>
-		</el-container>
-	</div>
+  <div class="homePage adminIndex">
+    <el-row style="height: 100%;">
+        <el-col :span="4"  style="min-height: 100%; background-color: #324057;">
+            <el-menu :default-active="defaultActive" style="min-height: 100%;" theme="dark" router>
+                <!-- 首页 -->
+                <el-menu-item index="manage"><i class="el-icon-menu"></i>首页</el-menu-item>
+                <el-menu-item index="timeMachine"><i class="el-icon-s-marketing"></i>时光机</el-menu-item>
+                <!-- 单词 -->
+                <el-submenu index="2">
+                    <template slot="title"><i class="el-icon-s-order"></i>单词管理</template>
+                    <el-menu-item index="userList">单词输入</el-menu-item>
+                    <el-menu-item index="shopList">单词查询</el-menu-item>
+                </el-submenu>
+                <el-submenu index="3">
+                    <template slot="title"><i class="el-icon-s-promotion"></i>语法文章</template>
+                    <el-menu-item index="addShop">语法输入</el-menu-item>
+                    <el-menu-item index="addGoods">文章输入</el-menu-item>
+                </el-submenu>
+                <!-- 附录 -->
+                <el-submenu index="4">
+                    <template slot="title"><i class="el-icon-star-on"></i>附录</template>
+                    <el-menu-item index="visitor">地图</el-menu-item>
+                    <el-menu-item index="visitor">神话</el-menu-item>
+                </el-submenu>
+                <!-- 设置 -->
+                <el-submenu index="5">
+                    <template slot="title"><i class="el-icon-s-tools"></i>设置</template>
+                    <el-menu-item index="adminSet">管理员设置</el-menu-item>
+                    <el-menu-item index="adminSet">主题设置</el-menu-item>
+                </el-submenu>
+            </el-menu>
+        </el-col>
+        <el-col :span="20" style="height: 100%;overflow: auto;">
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
+        </el-col>
+    </el-row>
+  </div>
 </template>
 <script>
 export default {
-	data () {
-		return {
-			isCollapse: true
+  computed: {
+			defaultActive (){
+				return this.$route.path.replace('/', '');
+			}
 		}
-	},
-	methods: {
-		handleOpen(key, keyPath) {
-			console.log(key, keyPath);
-		},
-		handleClose(key, keyPath) {
-			console.log(key, keyPath);
-		}
-	}
-}
+};
 </script>
 <style scoped>
-	.el-header {
-		padding: 0;
-	}
-	.el-aside {
-		width: auto!important;
-	}
-	.asideOper {
-		width: 200px;
-	}
-	.el-radio-group {
-		margin-bottom: 0px!important;
-	}
-	.adminIndex,
-	.el-container,
-	.is-vertical {
-		height: 100%;
-	}
-	.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-  }
-	.el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
+.homePage {
+    width: 100%;
+    height: 100%;
+}
 </style>
