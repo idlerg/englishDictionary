@@ -21,7 +21,7 @@
                     <el-menu-item index="grammarAdmin" disabled>文章输入</el-menu-item>
                 </el-submenu>
                 <el-submenu index="4">
-                    <template slot="title"><i class="el-icon-s-promotion"></i>积分系统</template>
+                    <template slot="title"><i class="el-icon-s-claim"></i>积分系统</template>
                     <el-menu-item index="integralSystem" disabled>账号等级</el-menu-item>
                     <el-menu-item index="integralSystem" disabled>积分管理</el-menu-item>
                 </el-submenu>
